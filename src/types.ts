@@ -1,4 +1,4 @@
-import { PluginMeta } from '@posthog/plugin-scaffold'
+import { Meta } from '@posthog/plugin-scaffold'
 
 export type PluginConfig = {
     outfunnelApiKey: string
@@ -8,9 +8,9 @@ export type PluginConfig = {
     uploadFormat: 'jsonl'
 }
 
-export type OutfunnelPluginMeta = PluginMeta<{
+export interface OutfunnelPluginMeta extends Meta {
     global: {
         eventsToIgnore: Set<string>
     }
     config: PluginConfig
-}>
+}
