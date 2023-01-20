@@ -14,3 +14,11 @@ export interface OutfunnelPluginMeta extends Meta {
     }
     config: PluginConfig
 }
+
+export interface Logger {
+    error: typeof console.error
+    log: typeof console.log
+    debug: typeof console.debug,
+    warn: typeof console.warn
+    info: typeof console.info
+}

@@ -1,5 +1,5 @@
  describe('Dummy test', () => {
-     it('throws an error if the API key is empty', () => {
+     it('', () => {
          expect(true ).toBe(true)
      })
  })
