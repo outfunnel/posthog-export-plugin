@@ -11,7 +11,6 @@ export const setupPlugin = (meta: OutfunnelPluginMeta) => {
 
     validateApiKey(config.outfunnelApiKey)
 
-
     global.eventsToIgnore = config.eventsToIgnore ? getEventsToIgnore(config.eventsToIgnore) : null
 }
 
