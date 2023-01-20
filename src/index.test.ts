@@ -20,7 +20,7 @@ const invalidConfig: PluginConfig = {
 
 describe('Outfunnel Plugin', () => {
     let mockedMeta: any
-    let mockedInvalidMeta: any
+    let mockedInvalidConfigMeta: any
 
     beforeEach(() => {
         jest.clearAllMocks()
@@ -34,7 +34,7 @@ describe('Outfunnel Plugin', () => {
             config: defaultConfig
         }
 
-        mockedInvalidMeta = {
+        mockedInvalidConfigMeta = {
             global: {},
             config: invalidConfig
         }
@@ -43,7 +43,7 @@ describe('Outfunnel Plugin', () => {
 
     describe('setupPlugin', () => {
         it('throws an error if the API key is not provided', () => {
-            expect(() => setupPlugin(mockedInvalidMeta)).toThrowError('Please provide an API key')
+            expect(() => setupPlugin(mockedInvalidConfigMeta)).toThrowError('Please provide an API key')
         })
 
         it('does not throw an error if the API key is provided', () => {
@@ -52,6 +52,7 @@ describe('Outfunnel Plugin', () => {
 
         it('Sets up plugin correctly' , () => {
             setupPlugin(mockedMeta)
+            expect(mockedMeta.global.eventsToIgnore).toBeDefined()
             expect(mockedMeta.global.eventsToIgnore).toEqual(new Set(['one', 'two', 'three']))
         })
     });
