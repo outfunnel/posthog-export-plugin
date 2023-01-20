@@ -1,10 +1,11 @@
-import { PluginMeta } from '@posthog/plugin-scaffold'
+import { PluginEvent } from '@posthog/plugin-scaffold'
+import { OutfunnelPluginMeta } from './types'
 
-export const setupPlugin = (meta: PluginMeta<any>) => {
+export const setupPlugin = (meta: OutfunnelPluginMeta) => {
 
 }
 
 
-export const exportEvents = (events: any[], meta: PluginMeta<any>) => {
+export const exportEvents = (events: PluginEvent[], meta: OutfunnelPluginMeta) => {
 
 }
