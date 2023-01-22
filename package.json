@@ -48,6 +48,6 @@
     }
   },
   "lint-staged": {
-    "*": "prettier --write"
+    "*": "$(npm bin)/prettier --write"
   }
 }
