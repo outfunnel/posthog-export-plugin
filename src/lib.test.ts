@@ -1,4 +1,4 @@
-import { validateApiKey, getEventsToIgnore } from './lib';
+import { validateApiKey, getEventsToIgnore, sendEventToOutfunnel } from './lib';
 
 
 describe('validateApiKey', () => {
@@ -21,3 +21,21 @@ describe('getEventsToIgnore', () => {
         expect(getEventsToIgnore('')).toEqual(new Set())
     })
 })
+
+
+// describe('sendEventToOutfunnel', () => {
+//     it('sends an event to Outfunnel', async () => {
+//         const event = {
+//             event: 'test',
+//             properties: {
+//                 test: 'test'
+//             }
+//         };
+//
+//         const apiKey = '12345';
+//
+//         const response = await sendEventToOutfunnel(event, apiKey);
+//
+//         expect(sendEventToOutfunnel(event, apiKey)).not.toThrowError('Error sending event to Outfunnel')
+//     })
+// })
