@@ -3,18 +3,12 @@ import { PluginConfig } from './types';
 
 const defaultConfig: PluginConfig = {
     "outfunnelApiKey": "12345",
-    "uploadMinutes": "1",
-    "uploadMegabytes": "1",
     "eventsToIgnore": "one,two,three",
-    "uploadFormat": 'jsonl'
 }
 
 const invalidConfig: PluginConfig = {
     "outfunnelApiKey": null,
-    "uploadMinutes": null,
-    "uploadMegabytes": null,
     "eventsToIgnore": "one,two,three",
-    "uploadFormat": 'jsonl'
 }
 
 
