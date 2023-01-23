@@ -1,9 +1,7 @@
-import { PluginEvent } from '@posthog/plugin-scaffold'
-import { Logger } from './types'
+import { PluginEvent, RetryError } from '@posthog/plugin-scaffold'
 import type { RequestInfo, RequestInit, Response } from 'node-fetch'
-
-
-const OUTFUNNEL_URL = 'https://d4a6-2001-7d0-831a-a700-15be-d1a5-145f-a6a6.eu.ngrok.io/posthog';
+import { Logger } from './types'
+import { OUTFUNNEL_URL } from './constants'
 
 export const PluginLogger: Logger = {
     info: console.info,
@@ -40,7 +38,7 @@ export const sendEventToOutfunnel = async (event: PluginEvent, apiKey: string): 
     try {
         PluginLogger.debug('Sending event to Outfunnel', event)
 
-        const response = await fetch(OUTFUNNEL_URL, {
+        const response = await fetch(`${OUTFUNNEL_URL}/posthog`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +51,7 @@ export const sendEventToOutfunnel = async (event: PluginEvent, apiKey: string): 
 
         if (!isOkResponse) {
             PluginLogger.error('Error sending event to Outfunnel', JSON.stringify(response));
-            throw new Error('Error sending event to Outfunnel');
+            throw new RetryError('Error sending event to Outfunnel');
         }
     } catch (error) {
         PluginLogger.error(error)

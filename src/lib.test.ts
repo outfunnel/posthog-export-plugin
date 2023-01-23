@@ -3,12 +3,11 @@ import { setupServer } from "msw/node";
 import { rest } from "msw";
 import { createPageview } from '@posthog/plugin-scaffold/test/utils.js';
 import { validateApiKey, getEventsToIgnore, sendEventToOutfunnel } from './lib';
-
-const baseUri = 'https://d4a6-2001-7d0-831a-a700-15be-d1a5-145f-a6a6.eu.ngrok.io';
+import { OUTFUNNEL_URL } from './constants';
 
 const handlers = [
     // Mock the Outfunnel posthog endpoint
-    rest.post(`${baseUri}/posthog`, async (req, res, ctx) => {
+    rest.post(`${OUTFUNNEL_URL}/posthog`, async (req, res, ctx) => {
         return res(
             ctx.status(200),
             ctx.json({
@@ -54,7 +53,6 @@ describe('sendEventToOutfunnel',  () => {
     beforeEach(() => {
         pageviewEvent = createPageview()
         apiKey = '12345'
-
     });
 
     it('sends an event to Outfunnel', async () => {
