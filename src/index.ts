@@ -1,4 +1,4 @@
-import { PluginEvent, RetryError } from '@posthog/plugin-scaffold'
+import { PluginEvent } from '@posthog/plugin-scaffold'
 import { OutfunnelPluginMeta } from './types'
 import { validateApiKey, getEventsToIgnore, sendEventToOutfunnel, PluginLogger } from './lib'
 
@@ -19,15 +19,18 @@ export const onEvent = async (event: PluginEvent, meta: OutfunnelPluginMeta) => 
     const { global, config } = meta
 
     if (global.eventsToIgnore && global.eventsToIgnore.has(event.event)) {
+        PluginLogger.info(`Ignoring event ${event.event}`)
         return
     }
 
-    if (config.outfunnelApiKey) {
-        try {
-            await sendEventToOutfunnel(event, config.outfunnelApiKey)
-        } catch (error) {
-            PluginLogger.error(error)
-            throw new RetryError("Failed to send event to Outfunnel")
-        }
+    if (!config.outfunnelApiKey) {
+        throw new Error('Please provide an API key')
+    }
+
+    try {
+        await sendEventToOutfunnel(event, config.outfunnelApiKey)
+    } catch (error) {
+        PluginLogger.error(error)
+        throw new Error(`Failed to send event to Outfunnel Error: ${error}`)
     }
 }
