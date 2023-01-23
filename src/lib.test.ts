@@ -1,9 +1,7 @@
 import 'isomorphic-fetch';
 import { setupServer } from "msw/node";
-import { rest } from "msw";
 import { createPageview } from '@posthog/plugin-scaffold/test/utils.js';
 import { validateApiKey, getEventsToIgnore, sendEventToOutfunnel } from './lib';
-import { OUTFUNNEL_URL } from './constants';
 import { handlers, setupFailedApiHandler, setupUnauthorizedApiHandler} from './test.utils';
 
 // Setup Outfunnel MSW service
