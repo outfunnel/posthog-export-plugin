@@ -4,18 +4,7 @@ import { rest } from "msw";
 import { createPageview } from '@posthog/plugin-scaffold/test/utils.js';
 import { validateApiKey, getEventsToIgnore, sendEventToOutfunnel } from './lib';
 import { OUTFUNNEL_URL } from './constants';
-
-const handlers = [
-    // Mock the Outfunnel posthog endpoint
-    rest.post(`${OUTFUNNEL_URL}/posthog`, async (req, res, ctx) => {
-        return res(
-            ctx.status(200),
-            ctx.json({
-                "data": {},
-                "status": 200
-            }))
-    }),
-];
+import { handlers, setupFailedApiHandler, setupUnauthorizedApiHandler} from './test.utils';
 
 // Setup Outfunnel MSW service
 const mswServer = setupServer(...handlers);
@@ -57,5 +46,15 @@ describe('sendEventToOutfunnel',  () => {
 
     it('sends an event to Outfunnel', async () => {
         await expect(sendEventToOutfunnel(pageviewEvent, apiKey)).resolves.not.toThrowError('Error sending event to Outfunnel')
+    });
+
+    it('throws an error if there is a network problem', async () => {
+        setupFailedApiHandler(mswServer);
+        await expect(sendEventToOutfunnel(pageviewEvent, apiKey)).rejects.toThrowError('Failed to connect')
+    });
+
+    it('throws an error if the API key is invalid', async () => {
+        setupUnauthorizedApiHandler(mswServer);
+        await expect(sendEventToOutfunnel(pageviewEvent, apiKey)).rejects.toThrowError('Error sending event to Outfunnel')
     });
 });
