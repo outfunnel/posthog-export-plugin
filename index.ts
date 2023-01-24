@@ -1,6 +1,6 @@
 import { PluginEvent } from '@posthog/plugin-scaffold'
-import { OutfunnelPluginMeta } from './types'
-import { validateApiKey, getEventsToIgnore, sendEventToOutfunnel, PluginLogger } from './lib'
+import { OutfunnelPluginMeta } from './src/types'
+import { validateApiKey, getEventsToIgnore, sendEventToOutfunnel, PluginLogger } from './src/lib'
 
 export const setupPlugin = (meta: OutfunnelPluginMeta) => {
     const { global, config } = meta
