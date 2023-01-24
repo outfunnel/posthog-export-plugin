@@ -10,7 +10,7 @@ const external = Object.keys(pkg.dependencies || {}).concat(Object.keys(pkg.peer
 
 export default [
     {
-        input: './src/index.ts',
+        input: './index.ts',
         output: {
             file: pkg.main,
             format: 'cjs',

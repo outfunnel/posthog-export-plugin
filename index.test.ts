@@ -3,8 +3,8 @@ import { PluginEvent } from '@posthog/plugin-scaffold'
 import { createPageview } from '@posthog/plugin-scaffold/test/utils.js';
 import { setupServer } from 'msw/node'
 import { setupPlugin, onEvent } from './index';
-import { PluginConfig } from './types';
-import { handlers, setupFailedApiHandler, setupUnauthorizedApiHandler } from './test.utils'
+import { PluginConfig } from './src/types';
+import { handlers, setupFailedApiHandler, setupUnauthorizedApiHandler } from './src/test.utils'
 
 const defaultConfig: PluginConfig = {
     "outfunnelApiKey": "12345",
