@@ -82,7 +82,7 @@ describe('Outfunnel Plugin', () => {
         });
 
         it('throws an error if there is a network problem', async () => {
-            setupFailedApiHandler(mswServer);;
+            setupFailedApiHandler(mswServer);
             await expect(onEvent(pageviewEvent, mockedMeta)).rejects.toThrowError('Failed to connect');
         });
 
