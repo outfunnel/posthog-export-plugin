@@ -2,7 +2,7 @@
   "name": "Outfunnel PostHog Export Plugin",
   "url": "https://github.com/outfunnel/outfunnel-posthog-export-plugin",
   "description": "Export PostHog events to Outfunnel.",
-  "main": "dist/index.js",
+  "main": "index.ts",
   "posthogVersion": ">= 1.25.0",
   "config": [
     {
