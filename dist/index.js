@@ -112,13 +112,16 @@ function statusOk(res) {
 const sendEventToOutfunnel = (event, apiKey) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         PluginLogger.debug('Sending event to Outfunnel', event);
+        const requestBody = {
+            event
+        };
         const response = yield fetch(`${OUTFUNNEL_URL}/events/posthog`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${apiKey}`,
             },
-            body: JSON.stringify(event)
+            body: JSON.stringify(requestBody)
         });
         const isOkResponse = yield statusOk(response);
         if (!isOkResponse) {
