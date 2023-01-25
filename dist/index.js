@@ -83,7 +83,7 @@ var types = {};
 	
 } (dist));
 
-const OUTFUNNEL_URL = 'https://d4a6-2001-7d0-831a-a700-15be-d1a5-145f-a6a6.eu.ngrok.io';
+const OUTFUNNEL_URL = 'https://sink.outfunnel.com';
 
 const PluginLogger = {
     info: console.info,
@@ -112,13 +112,16 @@ function statusOk(res) {
 const sendEventToOutfunnel = (event, apiKey) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         PluginLogger.debug('Sending event to Outfunnel', event);
-        const response = yield fetch(`${OUTFUNNEL_URL}/posthog`, {
+        const requestBody = {
+            event
+        };
+        const response = yield fetch(`${OUTFUNNEL_URL}/events/posthog`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${apiKey}`,
             },
-            body: JSON.stringify(event)
+            body: JSON.stringify(requestBody)
         });
         const isOkResponse = yield statusOk(response);
         if (!isOkResponse) {
