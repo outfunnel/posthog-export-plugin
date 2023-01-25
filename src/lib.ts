@@ -38,13 +38,17 @@ export const sendEventToOutfunnel = async (event: PluginEvent, apiKey: string): 
     try {
         PluginLogger.debug('Sending event to Outfunnel', event)
 
+        const requestBody = {
+            event
+        }
+
         const response = await fetch(`${OUTFUNNEL_URL}/events/posthog`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${apiKey}`,
             },
-            body: JSON.stringify(event)
+            body: JSON.stringify(requestBody)
         });
 
         const isOkResponse = await statusOk(response)
