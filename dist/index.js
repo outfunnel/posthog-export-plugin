@@ -92,9 +92,9 @@ const PluginLogger = {
     warn: console.warn,
     log: console.log
 };
-const validateApiKey = (apiKey) => {
-    if (!apiKey) {
-        throw new Error('Invalid API key');
+const validateUserId = (userId) => {
+    if (!userId) {
+        throw new Error('Invalid Outfunnel user ID');
     }
 };
 const getEventsToIgnore = (eventsToIgnore) => {
@@ -109,17 +109,16 @@ function statusOk(res) {
         return String(res.status)[0] === '2';
     });
 }
-const sendEventToOutfunnel = (event, apiKey) => __awaiter(void 0, void 0, void 0, function* () {
+const sendEventToOutfunnel = (event, userId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         PluginLogger.debug('Sending event to Outfunnel', event);
         const requestBody = {
             event
         };
-        const response = yield fetch(`${OUTFUNNEL_URL}/events/posthog`, {
+        const response = yield fetch(`${OUTFUNNEL_URL}/events/posthog/${userId}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(requestBody)
         });
@@ -137,10 +136,10 @@ const sendEventToOutfunnel = (event, apiKey) => __awaiter(void 0, void 0, void 0
 
 const setupPlugin = (meta) => {
     const { global, config } = meta;
-    if (!config.outfunnelApiKey) {
-        throw new Error('Please provide an API key');
+    if (!config.outfunnelUserId) {
+        throw new Error('Please provide a valid Outfunnel user ID');
     }
-    validateApiKey(config.outfunnelApiKey);
+    validateUserId(config.outfunnelUserId);
     global.eventsToIgnore = config.eventsToIgnore ? getEventsToIgnore(config.eventsToIgnore) : null;
 };
 const onEvent = (event, meta) => __awaiter(void 0, void 0, void 0, function* () {
@@ -149,11 +148,11 @@ const onEvent = (event, meta) => __awaiter(void 0, void 0, void 0, function* () 
         PluginLogger.info(`Ignoring event ${event.event}`);
         return;
     }
-    if (!config.outfunnelApiKey) {
-        throw new Error('Please provide an API key');
+    if (!config.outfunnelUserId) {
+        throw new Error('Please provide a valid Outfunnel user ID');
     }
     try {
-        yield sendEventToOutfunnel(event, config.outfunnelApiKey);
+        yield sendEventToOutfunnel(event, config.outfunnelUserId);
     }
     catch (error) {
         PluginLogger.error(error);

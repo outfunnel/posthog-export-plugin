@@ -3,7 +3,7 @@ import { OUTFUNNEL_URL } from './constants'
 
 export const handlers = [
     // Mock the Outfunnel posthog endpoint
-    rest.post(`${OUTFUNNEL_URL}/events/posthog`, async (req, res, ctx) => {
+    rest.post(`${OUTFUNNEL_URL}/events/posthog/:userId`, async (req, res, ctx) => {
         return res(
             ctx.status(200),
             ctx.json({
@@ -16,7 +16,7 @@ export const handlers = [
 
 export const setupFailedApiHandler = (mswServer) => {
     mswServer.use(
-        rest.post(`${OUTFUNNEL_URL}/events/posthog`, async (req, res, ctx) => {
+        rest.post(`${OUTFUNNEL_URL}/events/posthog/:userId`, async (req, res, ctx) => {
             return res.networkError('Failed to connect');
         }),
     );
@@ -24,7 +24,7 @@ export const setupFailedApiHandler = (mswServer) => {
 
 export const setupUnauthorizedApiHandler = (mswServer) => {
     mswServer.use(
-        rest.post(`${OUTFUNNEL_URL}/events/posthog`, async (req, res, ctx) => {
+        rest.post(`${OUTFUNNEL_URL}/events/posthog/:userId`, async (req, res, ctx) => {
             return res(
                 ctx.status(401),
                 ctx.json({
