@@ -9,11 +9,11 @@
       "markdown": "Sign up for a [Outfunnel.com](https://www.outfunnel.com) account, and follow the instructions in app"
     },
     {
-      "key": "outfunnelApiKey",
-      "name": "Outfunnel API Key",
+      "key": "outfunnelUserId",
+      "name": "Outfunnel User ID",
       "type": "string",
       "default": "",
-      "hint": "The API key for your Outfunnel account. You can find it in the Outfunnel app.",
+      "hint": "The Outfunnel User ID to export to. You can find this in the Outfunnel app.",
       "required": true,
       "secret": true
     },

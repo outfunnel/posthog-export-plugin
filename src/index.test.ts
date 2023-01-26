@@ -7,17 +7,17 @@ import { PluginConfig } from './types';
 import { handlers, setupFailedApiHandler, setupUnauthorizedApiHandler } from './test.utils'
 
 const defaultConfig: PluginConfig = {
-    "outfunnelApiKey": "12345",
+    "outfunnelUserId": "12345",
     "eventsToIgnore": "one,two,three"
 }
 
 const invalidConfig: PluginConfig = {
-    "outfunnelApiKey": null,
+    "outfunnelUserId": null,
     "eventsToIgnore": "one,two,three"
 }
 
 const eventsToIgnoreConfig: PluginConfig = {
-    "outfunnelApiKey": "12345",
+    "outfunnelUserId": "12345",
     "eventsToIgnore": "$pageview"
 }
 
@@ -61,11 +61,11 @@ describe('Outfunnel Plugin', () => {
 
     describe('setupPlugin', () => {
         it('throws an error if the API key is not provided', () => {
-            expect(() => setupPlugin(mockedInvalidConfigMeta)).toThrowError('Please provide an API key')
+            expect(() => setupPlugin(mockedInvalidConfigMeta)).toThrowError('Please provide a valid Outfunnel user ID')
         })
 
         it('does not throw an error if the API key is provided', () => {
-            expect(() => setupPlugin(mockedMeta)).not.toThrowError('Please provide an API key')
+            expect(() => setupPlugin(mockedMeta)).not.toThrowError('Please provide a valid Outfunnel user ID')
         })
 
         it('Sets up plugin correctly' , () => {
@@ -92,7 +92,7 @@ describe('Outfunnel Plugin', () => {
         });
 
         it('throws an error if the API key is not provided', async () => {
-            await expect(onEvent(pageviewEvent, mockedInvalidConfigMeta)).rejects.toThrowError('Please provide an API key');
+            await expect(onEvent(pageviewEvent, mockedInvalidConfigMeta)).rejects.toThrowError('Please provide a valid Outfunnel user ID');
         });
     });
 

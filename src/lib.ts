@@ -14,9 +14,9 @@ export const PluginLogger: Logger = {
 // fetch only declared, as it's provided as a plugin VM global
 declare function fetch(url: RequestInfo, init?: RequestInit): Promise<Response>
 
-export const validateApiKey = (apiKey: string): void => {
-    if (!apiKey) {
-        throw new Error('Invalid API key')
+export const validateUserId = (userId: string): void => {
+    if (!userId) {
+        throw new Error('Invalid Outfunnel user ID');
     }
 }
 
@@ -33,7 +33,7 @@ async function statusOk(res: Response): Promise<boolean> {
     return String(res.status)[0] === '2'
 }
 
-export const sendEventToOutfunnel = async (event: PluginEvent, apiKey: string): Promise<void> => {
+export const sendEventToOutfunnel = async (event: PluginEvent, userId: string): Promise<void> => {
 
     try {
         PluginLogger.debug('Sending event to Outfunnel', event)
@@ -42,11 +42,10 @@ export const sendEventToOutfunnel = async (event: PluginEvent, apiKey: string): 
             event
         }
 
-        const response = await fetch(`${OUTFUNNEL_URL}/events/posthog`, {
+        const response = await fetch(`${OUTFUNNEL_URL}/events/posthog/${userId}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(requestBody)
         });

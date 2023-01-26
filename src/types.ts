@@ -1,7 +1,7 @@
 import { Meta } from '@posthog/plugin-scaffold'
 
 export type PluginConfig = {
-    outfunnelApiKey: string
+    outfunnelUserId: string
     eventsToIgnore: string
 }
 
