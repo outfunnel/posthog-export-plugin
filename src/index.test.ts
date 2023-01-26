@@ -60,11 +60,11 @@ describe('Outfunnel Plugin', () => {
 
 
     describe('setupPlugin', () => {
-        it('throws an error if the API key is not provided', () => {
+        it('throws an error if the User ID is not provided', () => {
             expect(() => setupPlugin(mockedInvalidConfigMeta)).toThrowError('Please provide a valid Outfunnel user ID')
         })
 
-        it('does not throw an error if the API key is provided', () => {
+        it('does not throw an error if the User ID is provided', () => {
             expect(() => setupPlugin(mockedMeta)).not.toThrowError('Please provide a valid Outfunnel user ID')
         })
 
@@ -86,12 +86,12 @@ describe('Outfunnel Plugin', () => {
             await expect(onEvent(pageviewEvent, mockedMeta)).rejects.toThrowError('Failed to connect');
         });
 
-        it('throws an error if the API key is invalid', async () => {
+        it('throws an error if the User ID is invalid', async () => {
             setupUnauthorizedApiHandler(mswServer);
             await expect(onEvent(pageviewEvent, mockedMeta)).rejects.toThrowError('Error sending event to Outfunnel');
         });
 
-        it('throws an error if the API key is not provided', async () => {
+        it('throws an error if the User ID is not provided', async () => {
             await expect(onEvent(pageviewEvent, mockedInvalidConfigMeta)).rejects.toThrowError('Please provide a valid Outfunnel user ID');
         });
     });

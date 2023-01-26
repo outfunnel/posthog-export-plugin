@@ -12,11 +12,11 @@ afterEach(() => mswServer.resetHandlers());
 afterAll(() => mswServer.close());
 
 describe('validateUserId', () => {
-    it('throws an error if the API key is empty', () => {
+    it('throws an error if the User id is empty', () => {
         expect(() => validateUserId('')).toThrowError('Invalid Outfunnel user ID')
     })
 
-    it('does not throw an error if the API key is not empty', () => {
+    it('does not throw an error if the User ID is not empty', () => {
         expect(() => validateUserId('123')).not.toThrowError('Invalid Outfunnel user ID')
     })
 });
@@ -51,7 +51,7 @@ describe('sendEventToOutfunnel',  () => {
         await expect(sendEventToOutfunnel(pageviewEvent, userId)).rejects.toThrowError('Failed to connect')
     });
 
-    it('throws an error if the API key is invalid', async () => {
+    it('throws an error if the User ID is invalid', async () => {
         setupUnauthorizedApiHandler(mswServer);
         await expect(sendEventToOutfunnel(pageviewEvent, userId)).rejects.toThrowError('Error sending event to Outfunnel')
     });
