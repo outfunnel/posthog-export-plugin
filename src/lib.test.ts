@@ -16,6 +16,10 @@ describe('validateUserId', () => {
         expect(() => validateUserId('')).toThrowError('Invalid Outfunnel user ID')
     })
 
+    it('throws an error if the User id is not valid object Id', () => {
+        expect(() => validateUserId('')).toThrowError('Invalid Outfunnel user ID')
+    })
+
     it('does not throw an error if the User ID is valid', () => {
         expect(() => validateUserId('56cb91bdc3464f14678934ca')).not.toThrowError('Invalid Outfunnel user ID')
     })
