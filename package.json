@@ -18,19 +18,21 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/outfunnel/outfunnel-posthog-export-plugin.git"
+    "url": "git+https://github.com/outfunnel/posthog-export-plugin.git"
   },
   "author": "Outfunnel",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/outfunnel/outfunnel-posthog-export-plugin/issues"
+    "url": "https://github.com/outfunnel/posthog-export-plugin/issues"
   },
-  "homepage": "https://github.com/outfunnel/outfunnel-posthog-export-plugin#readme",
+  "homepage": "https://github.com/outfunnel/posthog-export-plugin#readme",
   "devDependencies": {
     "@posthog/plugin-scaffold": "^1.4.1",
     "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@types/jest": "^29.2.6",
+    "bson-objectid": "^2.0.4",
     "husky": "^8.0.3",
     "isomorphic-fetch": "^3.0.0",
     "jest": "^29.3.1",

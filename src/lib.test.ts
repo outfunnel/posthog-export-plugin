@@ -16,8 +16,12 @@ describe('validateUserId', () => {
         expect(() => validateUserId('')).toThrowError('Invalid Outfunnel user ID')
     })
 
-    it('does not throw an error if the User ID is not empty', () => {
-        expect(() => validateUserId('123')).not.toThrowError('Invalid Outfunnel user ID')
+    it('throws an error if the User id is not valid object Id', () => {
+        expect(() => validateUserId('')).toThrowError('Invalid Outfunnel user ID')
+    })
+
+    it('does not throw an error if the User ID is valid', () => {
+        expect(() => validateUserId('56cb91bdc3464f14678934ca')).not.toThrowError('Invalid Outfunnel user ID')
     })
 });
 
@@ -39,7 +43,7 @@ describe('sendEventToOutfunnel',  () => {
 
     beforeEach(() => {
         pageviewEvent = createPageview()
-        userId = '12345'
+        userId = '56cb91bdc3464f14678934ca'
     });
 
     it('sends an event to Outfunnel', async () => {
@@ -51,7 +55,7 @@ describe('sendEventToOutfunnel',  () => {
         await expect(sendEventToOutfunnel(pageviewEvent, userId)).rejects.toThrowError('Failed to connect')
     });
 
-    it('throws an error if the User ID is invalid', async () => {
+    it('throws an error if the User ID is not authorized', async () => {
         setupUnauthorizedApiHandler(mswServer);
         await expect(sendEventToOutfunnel(pageviewEvent, userId)).rejects.toThrowError('Error sending event to Outfunnel')
     });
