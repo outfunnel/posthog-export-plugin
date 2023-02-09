@@ -1,19 +1,19 @@
 {
-  "name": "Outfunnel PostHog Export Plugin",
+  "name": "Outfunnel",
   "url": "https://github.com/outfunnel/outfunnel-posthog-export-plugin",
   "description": "Export PostHog events to Outfunnel.",
   "main": "dist/index.js",
   "posthogVersion": ">= 1.25.0",
   "config": [
     {
-      "markdown": "Sign up for a [Outfunnel.com](https://www.outfunnel.com) account, and follow the instructions in app"
+      "markdown": "Sign up for a [Outfunnel.com](https://www.outfunnel.com) account, and follow the instructions in the app"
     },
     {
       "key": "outfunnelUserId",
       "name": "Outfunnel User ID",
       "type": "string",
       "default": "",
-      "hint": "The Outfunnel User ID to export to. You can find this in the Outfunnel app.",
+      "hint": "The Outfunnel User ID to export events to. You can find this in the Outfunnel app.",
       "required": true,
       "secret": true
     },

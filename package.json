@@ -1,5 +1,5 @@
 {
-  "name": "@outfunnel/posthog-export-plugin",
+  "name": "@outfunnel/posthog-plugin",
   "version": "0.1.0",
   "description": "Stream event data from PostHog to Outfunnel",
   "main": "dist/index.js",
