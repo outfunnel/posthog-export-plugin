@@ -1,5 +1,5 @@
 {
-  "name": "@outfunnel/posthog-plugin",
+  "name": "@outfunnel/posthog-export-plugin",
   "version": "0.1.0",
   "description": "Stream event data from PostHog to Outfunnel",
   "main": "dist/index.js",
@@ -18,14 +18,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/outfunnel/outfunnel-posthog-export-plugin.git"
+    "url": "git+https://github.com/outfunnel/posthog-export-plugin.git"
   },
   "author": "Outfunnel",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/outfunnel/outfunnel-posthog-export-plugin/issues"
+    "url": "https://github.com/outfunnel/posthog-export-plugin/issues"
   },
-  "homepage": "https://github.com/outfunnel/outfunnel-posthog-export-plugin#readme",
+  "homepage": "https://github.com/outfunnel/posthog-export-plugin#readme",
   "devDependencies": {
     "@posthog/plugin-scaffold": "^1.4.1",
     "@rollup/plugin-commonjs": "^24.0.1",
