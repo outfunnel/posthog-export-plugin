@@ -1,5 +1,6 @@
 import { PluginEvent, RetryError } from '@posthog/plugin-scaffold'
 import type { RequestInfo, RequestInit, Response } from 'node-fetch'
+import ObjectId from 'bson-objectid';
 import { Logger } from './types'
 import { OUTFUNNEL_URL } from './constants'
 
@@ -15,7 +16,7 @@ export const PluginLogger: Logger = {
 declare function fetch(url: RequestInfo, init?: RequestInit): Promise<Response>
 
 export const validateUserId = (userId: string): void => {
-    if (!userId) {
+    if (!userId || !ObjectId.isValid(userId)) {
         throw new Error('Invalid Outfunnel user ID');
     }
 }

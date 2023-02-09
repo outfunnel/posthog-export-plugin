@@ -7,7 +7,7 @@ import { PluginConfig } from './types';
 import { handlers, setupFailedApiHandler, setupUnauthorizedApiHandler } from './test.utils'
 
 const defaultConfig: PluginConfig = {
-    "outfunnelUserId": "12345",
+    "outfunnelUserId": "56cb91bdc3464f14678934ca",
     "eventsToIgnore": "one,two,three"
 }
 
@@ -17,7 +17,7 @@ const invalidConfig: PluginConfig = {
 }
 
 const eventsToIgnoreConfig: PluginConfig = {
-    "outfunnelUserId": "12345",
+    "outfunnelUserId": "56cb91bdc3464f14678934ca",
     "eventsToIgnore": "$pageview"
 }
 
