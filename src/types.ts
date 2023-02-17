@@ -19,3 +19,15 @@ export interface Logger {
     warn: typeof console.warn
     info: typeof console.info
 }
+
+export type RequestInfo = string | Request;
+
+export type RequestInit = {
+    method?: string
+    headers?: Record<string, string>
+    body?: string
+}
+
+export interface Response {
+    status: number | string
+}

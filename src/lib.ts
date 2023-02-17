@@ -1,7 +1,6 @@
 import { PluginEvent, RetryError } from '@posthog/plugin-scaffold'
-import type { RequestInfo, RequestInit, Response } from 'node-fetch'
 import ObjectId from 'bson-objectid';
-import { Logger } from './types'
+import { Logger, RequestInfo, RequestInit, Response } from './types'
 import { OUTFUNNEL_URL } from './constants'
 
 export const PluginLogger: Logger = {
