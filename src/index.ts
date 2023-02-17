@@ -19,7 +19,6 @@ export const onEvent = async (event: PluginEvent, meta: OutfunnelPluginMeta) => 
     const { global, config } = meta;
 
     if (global.eventsToIgnore && global.eventsToIgnore.has(event.event)) {
-        PluginLogger.info(`Ignoring event ${event.event}`);
         return;
     }
 
