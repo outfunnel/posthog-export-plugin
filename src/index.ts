@@ -1,6 +1,8 @@
 import { Meta, PluginEvent } from '@posthog/plugin-scaffold'
 import { validateUserId, getEventsToIgnore, sendEventToOutfunnel, PluginLogger } from './lib';
 
+const OUTFUNNEL_URL = 'https://sink.outfunnel.com';
+
 type PluginConfig = {
     outfunnelUserId: string
     eventsToIgnore: string
