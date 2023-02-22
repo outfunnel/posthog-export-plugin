@@ -46,13 +46,13 @@ const PluginLogger: Logger = {
 // fetch only declared, as it's provided as a plugin VM global
 declare function fetch(url: RequestInfo, init?: RequestInit): Promise<Response>
 
-const validateUserId = (userId: string): void => {
+export const validateUserId = (userId: string): void => {
     if (!userId) {
         throw new Error('Invalid Outfunnel user ID');
     }
 }
 
-const getEventsToIgnore = (eventsToIgnore: string): Set<string> => {
+export const getEventsToIgnore = (eventsToIgnore: string): Set<string> => {
     if (!eventsToIgnore) {
         return new Set()
     }
@@ -65,7 +65,7 @@ async function statusOk(res: Response): Promise<boolean> {
     return String(res.status)[0] === '2'
 }
 
-const sendEventToOutfunnel = async (event: PluginEvent, userId: string): Promise<void> => {
+export const sendEventToOutfunnel = async (event: PluginEvent, userId: string): Promise<void> => {
 
     try {
         PluginLogger.debug('Sending event to Outfunnel', event)
