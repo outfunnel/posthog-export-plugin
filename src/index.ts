@@ -1,6 +1,38 @@
-import { PluginEvent } from '@posthog/plugin-scaffold';
-import { OutfunnelPluginMeta } from './types';
+import { Meta, PluginEvent } from '@posthog/plugin-scaffold'
 import { validateUserId, getEventsToIgnore, sendEventToOutfunnel, PluginLogger } from './lib';
+
+type PluginConfig = {
+    outfunnelUserId: string
+    eventsToIgnore: string
+}
+
+interface OutfunnelPluginMeta extends Meta {
+    global: {
+        eventsToIgnore: Set<string>
+    }
+    config: PluginConfig
+}
+
+interface Logger {
+    error: typeof console.error
+    log: typeof console.log
+    debug: typeof console.debug,
+    warn: typeof console.warn
+    info: typeof console.info
+}
+
+type RequestInfo = string | Request;
+
+type RequestInit = {
+    method?: string
+    headers?: Record<string, string>
+    body?: string
+}
+
+interface Response {
+    status: number | string
+}
+
 
 export const setupPlugin = (meta: OutfunnelPluginMeta) => {
     const { global, config } = meta;
