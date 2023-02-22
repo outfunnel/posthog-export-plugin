@@ -1,5 +1,5 @@
 import { rest } from 'msw'
-import { OUTFUNNEL_URL } from './constants'
+import { OUTFUNNEL_URL } from './index'
 
 export const handlers = [
     // Mock the Outfunnel posthog endpoint

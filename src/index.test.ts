@@ -2,8 +2,7 @@ import 'isomorphic-fetch';
 import { PluginEvent } from '@posthog/plugin-scaffold'
 import { createPageview } from '@posthog/plugin-scaffold/test/utils.js';
 import { setupServer } from 'msw/node'
-import { setupPlugin, onEvent, validateUserId, getEventsToIgnore, sendEventToOutfunnel } from './index';
-import { PluginConfig } from './types';
+import { setupPlugin, onEvent, validateUserId, getEventsToIgnore, sendEventToOutfunnel, PluginConfig } from './index';
 import { handlers, setupFailedApiHandler, setupUnauthorizedApiHandler } from './test.utils'
 
 const defaultConfig: PluginConfig = {

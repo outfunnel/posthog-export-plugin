@@ -1,8 +1,8 @@
 import { Meta, PluginEvent, RetryError } from '@posthog/plugin-scaffold';
 
-const OUTFUNNEL_URL = 'https://sink.outfunnel.com';
+export const OUTFUNNEL_URL = 'https://sink.outfunnel.com';
 
-type PluginConfig = {
+export type PluginConfig = {
     outfunnelUserId: string
     eventsToIgnore: string
 }
